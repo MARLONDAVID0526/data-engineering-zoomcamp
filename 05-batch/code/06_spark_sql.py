@@ -38,6 +38,27 @@ spark-submit \
 
 ./sbin/stop-master.sh   #stop master
 """
+
+"""
+for executing on Cluster GCP directly-- console
+--input_green=gs://nyc-tl-data-marlon-2/pq/green/2021/*/ \
+--input_yellow=gs://nyc-tl-data-marlon-2/pq/yellow/2021/*/ \
+--output=gs://nyc-tl-data-marlon-2/pq/report-2021
+
+"""
+"""
+for executing on Cluster GCP directly-- gcloud
+gcloud dataproc jobs submit pyspark \
+    --cluster=de-zoomcamp-cluster \
+    --region=us-west1 \
+    gs://nyc-tl-data-marlon-2/code/06_spark_sql.py \
+    --\
+        --input_green=gs://nyc-tl-data-marlon-2/pq/green/2021/*/ \
+        --input_yellow=gs://nyc-tl-data-marlon-2/pq/yellow/2021/*/ \
+        --output=gs://nyc-tl-data-marlon-2/pq/report-2021
+
+"""
+
 import argparse
 
 import pyspark
