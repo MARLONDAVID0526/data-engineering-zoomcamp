@@ -1,6 +1,21 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+"""
+How to execute this:
+change name of the temporary bucket
+spark.conf.set('temporaryGcsBucket', 'dataproc-temp-us-west1-852913701020-dppgoppo')
+
+gcloud dataproc jobs submit pyspark \
+    --cluster=de-zoomcamp-cluster \
+    --region=us-west1 \
+    --jars=gs://spark-lib/bigquery/spark-bigquery-with-dependencies_2.12-0.23.2.jar \
+    gs://nyc-tl-data-marlon-2/code/06_spark_sql_big_query.py \
+    --\
+        --input_green=gs://nyc-tl-data-marlon-2/pq/green/2020/*/ \
+        --input_yellow=gs://nyc-tl-data-marlon-2/pq/yellow/2020/*/ \
+        --output=trips_data_all.reports-2020
+"""
 import argparse
 
 import pyspark
@@ -25,7 +40,7 @@ spark = SparkSession.builder \
     .appName('test') \
     .getOrCreate()
 
-spark.conf.set('temporaryGcsBucket', 'dataproc-temp-europe-west6-828225226997-fckhkym8')
+spark.conf.set('temporaryGcsBucket', 'dataproc-temp-us-west1-852913701020-dppgoppo')
 
 df_green = spark.read.parquet(input_green)
 

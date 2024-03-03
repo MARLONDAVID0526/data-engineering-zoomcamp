@@ -1,5 +1,63 @@
 #!/usr/bin/env python
 # coding: utf-8
+#how to execute:
+"""
+1. 
+Got to this url for details:
+
+https://spark.apache.org/docs/latest/spark-standalone.html
+
+got to local path sparkxx= echo $SPARK_HOME 
+
+execute this:
+./sbin/start-master.sh
+
+2. Execute/register now workers
+
+./sbin/start-worker.sh
+
+./sbin/start-worker.sh spark://MarlonPenuela.:7077
+
+3. 
+python 06_spark_sql.py \
+    --input_green=data/pq/green/2020/*/ \
+    --input_yellow=data/pq/yellow/2020/*/ \
+    --output=data/report-2020
+
+4. 
+URL="spark://MarlonPenuela.:7077"
+spark-submit \
+    --master="${URL}" \
+    06_spark_sql.py \
+        --input_green=data/pq/green/2021/*/ \
+        --input_yellow=data/pq/yellow/2021/*/ \
+        --output=data/report-2021
+
+4. Stoping services:
+./sbin/stop-worker.sh   #stop workers
+
+./sbin/stop-master.sh   #stop master
+"""
+
+"""
+for executing on Cluster GCP directly-- console
+--input_green=gs://nyc-tl-data-marlon-2/pq/green/2021/*/ \
+--input_yellow=gs://nyc-tl-data-marlon-2/pq/yellow/2021/*/ \
+--output=gs://nyc-tl-data-marlon-2/pq/report-2021
+
+"""
+"""
+for executing on Cluster GCP directly-- gcloud
+gcloud dataproc jobs submit pyspark \
+    --cluster=de-zoomcamp-cluster \
+    --region=us-west1 \
+    gs://nyc-tl-data-marlon-2/code/06_spark_sql.py \
+    --\
+        --input_green=gs://nyc-tl-data-marlon-2/pq/green/2021/*/ \
+        --input_yellow=gs://nyc-tl-data-marlon-2/pq/yellow/2021/*/ \
+        --output=gs://nyc-tl-data-marlon-2/pq/report-2021
+
+"""
 
 import argparse
 
