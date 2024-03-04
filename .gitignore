@@ -21,3 +21,5 @@ serving_dir
 *.csv
 *.parquet
 *.snappy.parquet.crc
+*._SUCCESS.crc
+*_SUCCESS
